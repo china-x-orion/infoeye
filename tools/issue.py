@@ -1,0 +1,24 @@
+"""
+Author:  rockylinux
+E-Mail:  Jingzheng.W@gmail.com 
+"""
+#!/usr/bin/python
+import commands 
+
+#display the issue 
+#return a list containning issue string 
+class issue:
+    def __init__(self):
+	    self.__name = 'issue'
+
+    def getData(self):
+        (status, output) = commands.getstatusoutput('/usr/bin/lsb_release -ds;/bin/uname -r')
+        return ' '.join(output.split("\n"))
+
+    def testGetData(self,test):
+        print test 
+
+if __name__ == '__main__':
+    a = issue()
+    test = a.getData()
+    a.testGetData(test)
