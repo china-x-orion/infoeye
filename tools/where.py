@@ -12,11 +12,15 @@ class whereissoftware:
 	    self.__name = 'whereissoftware'
 
     def getData(self):
-        (status, output) = commands.getstatusoutput('dpkg -l | awk \'{print$2","$3}\'')
+        (status, output) = commands.getstatusoutput('dpkg -l | awk \'{print$2, $3}\'')
         return output 
 
     def testGetData(self,test):
-        print test 
+        if type(test) == type([]):
+            for i in test:
+                print i
+        else:
+            print test 
 
 if __name__ == '__main__':
     a = whereissoftware()

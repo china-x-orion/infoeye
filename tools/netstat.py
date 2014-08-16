@@ -14,10 +14,14 @@ class netstat:
     def getData(self):
         (status, output) = commands.getstatusoutput('netstat -ntu | /usr/bin/awk \'NR>2 {sub(/:[^:]+$/, ""); print $5}\' | sort | uniq -c')
         #return output.split('\n') 
-        return output 
+        return [i.strip() for i in output.split("\n")]
 
     def testGetData(self,test):
-        print test 
+        if type(test) == type([]):
+            for i in test:
+                print i
+        else:
+            print test 
 
 if __name__ == '__main__':
     a = netstat()

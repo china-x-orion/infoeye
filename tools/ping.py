@@ -22,11 +22,15 @@ class ping:
 
 
         output = [[h, commands.getstatusoutput('/bin/ping -qc' + str(pingCount) + ' ' + h + '| awk -F/ \'/^rtt/ { print $5 }\'')[1]] for h in hosts]
-        return output 
+        return [i + ' ' + j for i,j in output]
 
   
     def testGetData(self,test):
-        print test 
+        if type(test) == type([]):
+            for i in test:
+                print i
+        else:
+            print test 
 
 if __name__ == '__main__':
     a = ping()

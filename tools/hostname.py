@@ -16,7 +16,11 @@ class serverhostname:
         return output.split() 
 
     def testGetData(self,test):
-        print test 
+        if type(test) == type([]):
+            for i in test:
+                print i
+        else:
+            print test 
 
 if __name__ == '__main__':
     a = serverhostname()
