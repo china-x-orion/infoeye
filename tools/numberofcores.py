@@ -1,0 +1,26 @@
+"""
+Author:  rockylinux
+E-Mail:  Jingzheng.W@gmail.com 
+"""
+#!/usr/bin/python
+import commands 
+
+#display the users numberofCores 
+#return a list containning numberofCores users
+class numberofCores:
+    def __init__(self):
+	    self.__name = 'numberofCores'
+
+    def getData(self):
+        (status, resultNumberOfCores) = commands.getstatusoutput('/bin/grep -c ^processor /proc/cpuinfo')
+        numberOfCores = resultNumberOfCores[0];
+
+        return numberOfCores 
+
+    def testGetData(self,test):
+        print test 
+
+if __name__ == '__main__':
+    a = numberofCores()
+    test = a.getData()
+    a.testGetData(test)
