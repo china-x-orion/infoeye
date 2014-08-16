@@ -4,7 +4,6 @@ Author:rockylinux
 E-mail:Jingzheng.W@gmail.com
 """
 import commands 
-import sys
 
 
 #display the server's time
