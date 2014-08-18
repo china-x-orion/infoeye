@@ -21,16 +21,19 @@ class uptime:
         minutes = int(totalMinutes - (days * 60 * 24) - (hours * 60) )
         uptime_rst = ''
         if days:
-            daysornot = str(days) + 'days' + 's' if days > 1 else ''
-            uptime_rst += daysornot + ' '	
+            dornot = 's' if days > 1 else ''
+            daysornot = str(days) + 'day' + dornot
+            uptime_rst = uptime_rst + daysornot  + ' '
 		
         if hours > 0:
-            hoursornot = str(hours) + 'hour' + 's' if hours > 1 else '' 
-            uptime_rst += hoursornot + ' '	
+            hornot = 's' if hours > 1 else ''
+            hoursornot = str(hours) + 'hour' + hornot 
+            uptime_rst = uptime_rst + hoursornot + ' '	
 		
         if minutes > 0:
-            minutesornot = str(minutes) + 'minute' + 's' if minutes > 1 else '' 
-            uptime_rst += minutesornot + ' '
+            mornot = 's' if minutes > 1 else ''
+            minutesornot = str(minutes) + 'minute' + mornot
+            uptime_rst = uptime_rst + minutesornot + ' '
             
         return uptime_rst 
 
