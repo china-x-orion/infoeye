@@ -7,15 +7,27 @@ import commands
 
 #display ethe's ip and MAC
 #return a list containning title and arp item
-class arp:
+class ARP:
+    """
+    constructor function
+    """
     def __init__(self):
-	    self.__name = 'arp'
+        self.__name = 'ARP'
 
-    def getData(self):
-        (status, output) = commands.getstatusoutput('if [ -e /usr/sbin/arp ] ; then /usr/sbin/arp ; else /sbin/arp ; fi | awk \'BEGIN {OFS=","} {print $1,$2,$3,$4,$5}\'')
-        return output.split() 
+    def getdata(self):
+        """
+        Get the execute results
+        """
+        output = commands.getstatusoutput(\
+        'if [ -e /usr/sbin/arp ] ; then /usr/sbin/arp ;\
+        else /sbin/arp ; fi | awk \'BEGIN {OFS=","} \
+        {print $1,$2,$3,$4,$5}\'')[1]
+        return output.split("\n")[1] 
 
-    def testGetData(self,test):
+    def testgetdata(self, test):
+        """
+        Test whether the function is work
+        """
         if type(test) == type([]):
             for i in test:
                 print i
@@ -23,6 +35,6 @@ class arp:
             print test 
 
 if __name__ == '__main__':
-    a = arp()
-    test = a.getData()
-    a.testGetData(test)
+    OBJ = ARP()
+    DATA = OBJ.getdata()
+    OBJ.testgetdata(DATA)
