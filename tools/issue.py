@@ -1,10 +1,10 @@
+#!/usr/bin/python
+import commands 
+
 """
 Author:  rockylinux
 E-Mail:  Jingzheng.W@gmail.com 
 """
-#!/usr/bin/python
-import commands 
-
 #display the issue 
 #return a list containning issue string 
 class issue:
