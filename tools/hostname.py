@@ -1,8 +1,8 @@
+#!/usr/bin/python
 """
 Author:  rockylinux
 E-Mail:  Jingzheng.W@gmail.com 
 """
-#!/usr/bin/python
 import commands 
 
 #display the users serverhostname 
