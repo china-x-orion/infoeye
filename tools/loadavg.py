@@ -21,7 +21,10 @@ class loadavg:
         loadAvgList = [float(i) / int(numberOfCores) for i in loadAvg.split(',')]
         loadAvgListPercent = [str(i/100) + "%" for i in loadAvgList]
 
-        return [loadAvgListPercent, loadAvgList]
+        rst = ' '.join([str(i) for i in loadAvgListPercent])
+        rst = rst + '\n' + ' '.join([str(i) for i in loadAvgList]) 
+        #return [loadAvgListPercent, loadAvgList]
+        return rst
 
     def testGetData(self,test):
         if type(test) == type([]):
