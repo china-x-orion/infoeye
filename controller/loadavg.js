@@ -15,8 +15,8 @@ cmd = "./tools/loadavg.py";
 		$("#cpu-1min-per").text(cpuRstPer[0]);
 		$("#cpu-5min-per").text(cpuRstPer[1]);
 		$("#cpu-15min-per").text(cpuRstPer[2]);
-		$("#cpu-1min").text(cpuRstPer[0]);
-		$("#cpu-5min").text(cpuRstPer[1]);
-		$("#cpu-15min").text(cpuRstPer[2]);
+		$("#cpu-1min").text(cpuRst[0]);
+		$("#cpu-5min").text(cpuRst[1]);
+		$("#cpu-15min").text(cpuRst[2]);
 	});
 })
