@@ -6,3 +6,4 @@ var cmd = "python ../tools/issue.py";
 		console.log("helloword");
 //		document.getElementById("os-info").value=stdout;
 	});
+
