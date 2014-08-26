@@ -6,8 +6,7 @@
 var exec = require('child_process').exec;
 
 $(function(){
-
-cmd = "./tools/loadavg.py"; 
+	cmd = "./tools/loadavg.py"; 
 	exec(cmd, function(error, stdout, stderr) {
 		console.log(stdout);
 		cpuRstPer = stdout.split('\n')[0].split(' ');
