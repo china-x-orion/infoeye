@@ -13,8 +13,10 @@ class ps:
 	    self.__name = 'ps'
 
     def getData(self):
-        (status, output) = commands.getstatusoutput('/bin/ps aux | /usr/bin/awk \'NR > 1 {print $1, $2, $3, $4, $5, $6, $7, $8, $9,$10,$11}\'')
-        return output 
+        (status, output) = commands.getstatusoutput('/bin/ps aux | /usr/bin/awk \'NR > 0 {print $1, $2, $3, $4, $5, $6, $7, $8, $9,$10,$11}\'')
+        
+        rstl = output.split("\n")
+        return [','.join(i.split())for i in rstl]
 
     def testGetData(self,test):
         if type(test) == type([]):
