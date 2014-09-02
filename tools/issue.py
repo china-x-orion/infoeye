@@ -14,7 +14,8 @@ class issue:
 
     def getData(self):
         (status, output) = commands.getstatusoutput('/usr/bin/lsb_release -ds;/bin/uname -r')
-        return ' '.join(output.split("\n"))
+        print ' '.join(output.split("\n"))
+        #return ' '.join(output.split("\n"))
 
     def testGetData(self,test):
         if type(test) == type([]):
@@ -26,4 +27,4 @@ class issue:
 if __name__ == '__main__':
     a = issue()
     test = a.getData()
-    a.testGetData(test)
+    #a.testGetData(test)

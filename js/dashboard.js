@@ -121,8 +121,8 @@ dashboard.fillElement = function(module, $el){
     });
 }
 
-//dashboard.getPs = function () {
-$(function () {
+dashboard.getPs = function () {
+//$(function () {
     moduleData("ps.py", function (data) {
         destroy_dataTable("ps_dashboard");
         $("#filter-ps").val("").off("keyup");
@@ -157,8 +157,8 @@ $(function () {
             psTable.fnFilter(this.value);
         });
     });
-//}
-})
+}
+//})
 
 dashboard.getNetStat = function () {
     moduleData("netstat.py", function (data) {
@@ -525,8 +525,8 @@ dashboard.getSabspeed = function () {
     leadDownstream.text(AS ? "MB/s" : "KB/s");
 }
 */
-//dashboard.getLoadAverage = function () {
-$(function () {
+dashboard.getLoadAverage = function () {
+//$(function () {
     moduleData("loadavg.py", function (data) {
         data  = eval(data);
         $("#cpu-1min").text(data[0][0]);
@@ -537,8 +537,8 @@ $(function () {
         $("#cpu-15min-per").text(data[2][1]);
     });
     //this.fillElement("numberofcores.py", $("#core-number"));
-//}
-})
+}
+//})
 /*
 dashboard.getDnsmasqLeases = function () {
     moduleData("dhcpleases", function (data) {
