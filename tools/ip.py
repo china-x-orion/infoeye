@@ -47,7 +47,7 @@ class IP:
             result2 = requests.get('http://ipecho.net/plain');
             output = 'external ip, ' + result2.content
                     
-        return output
+        print [i.split(",") for i in output]
 
     def testgetdata(self, test):
         """
@@ -62,5 +62,5 @@ class IP:
 if __name__ == '__main__':
     OBJ = IP()
     DATA = OBJ.getdata()
-    OBJ.testgetdata(DATA)
+    #OBJ.testgetdata(DATA)
 

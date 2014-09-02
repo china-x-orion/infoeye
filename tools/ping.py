@@ -23,7 +23,8 @@ class ping:
 
 
         output = [[h, commands.getstatusoutput('/bin/ping -qc' + str(pingCount) + ' ' + h + '| awk -F/ \'/^rtt/ { print $5 }\'')[1]] for h in hosts]
-        return [i + ' ' + j for i,j in output]
+        print [[i, j] for i,j in output]
+        #return [i + ' ' + j for i,j in output]
 
   
     def testGetData(self,test):
@@ -36,5 +37,5 @@ class ping:
 if __name__ == '__main__':
     a = ping()
     test = a.getData()
-    a.testGetData(test)
+    #a.testGetData(test)
 

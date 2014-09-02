@@ -14,7 +14,8 @@ class users:
 
     def getData(self):
         (status, output) = commands.getstatusoutput('/usr/bin/awk -F: \'{ if ($3<=499) print "system,"$1","$6; else print "user,"$1","$6; }\' < /etc/passwd')
-        return output.split() 
+        print [i.split(",") for i in output.split()] 
+        #return output.split() 
 
     def testGetData(self,test):
         if type(test) == type([]):
@@ -26,4 +27,4 @@ class users:
 if __name__ == '__main__':
     a = users()
     test = a.getData()
-    a.testGetData(test)
+    #a.testGetData(test)

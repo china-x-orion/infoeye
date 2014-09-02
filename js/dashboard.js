@@ -161,9 +161,10 @@ $(function () {
 })
 
 dashboard.getNetStat = function () {
-    moduleData("netstat", function (data) {
+    moduleData("netstat.py", function (data) {
         destroy_dataTable("netstat_dashboard");
 
+        data  = eval(data);
         $("#netstat_dashboard").dataTable({
             aaData: data,
             aoColumns: [
@@ -186,7 +187,8 @@ dashboard.getNetStat = function () {
 
 
 dashboard.getUsers = function () {
-    moduleData("users", function (data) {
+    moduleData("users.py", function (data) {
+        data  = eval(data);
         destroy_dataTable("users_dashboard");
 
         $("#users_dashboard").dataTable({
@@ -211,9 +213,10 @@ dashboard.getUsers = function () {
 }
 
 dashboard.getOnline = function () {
-    moduleData("online", function (data) {
+    moduleData("online.py", function (data) {
         destroy_dataTable("online_dashboard");
 
+        data  = eval(data);
         $("#online_dashboard").dataTable({
             aaData: data,
             aoColumns: [
@@ -411,7 +414,8 @@ dashboard.getOs = function () {
 }
 
 dashboard.getIp = function () {
-    moduleData("ip", function (data) {
+    moduleData("ip.py", function (data) {
+        data  = eval(data);
         destroy_dataTable("ip_dashboard");
         $("#ip_dashboard").dataTable({
             aaData: data,
@@ -433,8 +437,10 @@ dashboard.getPing = function () {
     var refreshIcon = $('#refresh-ping .icon-refresh');
     refreshIcon.addClass('icon-spin');
 
-    moduleData("ping", function (data) {
+    moduleData("ping.py", function (data) {
         destroy_dataTable("ping_dashboard");
+
+        data  = eval(data);
 
         $("#ping_dashboard").dataTable({
             aaData: data,
@@ -561,9 +567,15 @@ dashboard.getBandwidth = function () {
     refreshIcon.addClass('icon-spin');
 
     moduleData('bandwidth.py', function (data) {
-        $('#bw-int').text(data['0'].interface + ":");
-        $('#bw-tx').text(data['0'].tx);
-        $('#bw-rx').text(data['0'].rx);
+        data  = eval(data);
+		console.log(data);
+        $('#bw-int').text(data[0] + ":");
+        $('#bw-tx').text(data[1]);
+        $('#bw-rx').text(data[2]);
+
+        //$('#bw-int').text(data['0'].interface + ":");
+        //$('#bw-tx').text(data['0'].tx);
+        //$('#bw-rx').text(data['0'].rx);
 
         refreshIcon.removeClass('icon-spin');
     });
@@ -571,7 +583,8 @@ dashboard.getBandwidth = function () {
 }
 
 dashboard.getSwaps = function () {
-    moduleData("swap", function (data) {
+    moduleData("swap.py", function (data) {
+        data  = eval(data);
         var table = $("#swap_dashboard");
         var ex = document.getElementById("swap_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {

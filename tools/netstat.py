@@ -15,7 +15,8 @@ class netstat:
     def getData(self):
         (status, output) = commands.getstatusoutput('netstat -ntu | /usr/bin/awk \'NR>2 {sub(/:[^:]+$/, ""); print $5}\' | sort | uniq -c')
         #return output.split('\n') 
-        return [i.strip() for i in output.split("\n")]
+        print [i.strip().split() for i in output.split("\n")]
+        #return [i.strip() for i in output.split("\n")]
 
     def testGetData(self,test):
         if type(test) == type([]):
@@ -27,5 +28,5 @@ class netstat:
 if __name__ == '__main__':
     a = netstat()
     test = a.getData()
-    a.testGetData(test)
+    #a.testGetData(test)
 

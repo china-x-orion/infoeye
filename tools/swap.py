@@ -14,7 +14,9 @@ class swap:
 
     def getData(self):
         (status, output) = commands.getstatusoutput('/bin/cat /proc/swaps | /usr/bin/tail -n +2 | /usr/bin/awk \'{print $1","$2","$3","$4","$5}\'')
-        return output.split() 
+        #print output.split(",") 
+        print [i.split(",") for i in output.split()]
+        #return output.split() 
 
     def testGetData(self,test):
         if type(test) == type([]):
@@ -26,4 +28,4 @@ class swap:
 if __name__ == '__main__':
     a = swap()
     test = a.getData()
-    a.testGetData(test)
+    #a.testGetData(test)

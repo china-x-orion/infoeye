@@ -40,9 +40,20 @@ class BANDWIDTH:
             rx_end = commands.getstatusoutput("cat /sys/class/net/" + iface + "/statistics/rx_bytes")[1]
             
             results.append([iface, int(rx_end.strip()) - int(rx_start.strip()), int(tx_end.strip()) - int(tx_start.strip())])
-        
-        return results
+            #results.append([iface, int(rx_end.strip()) - int(rx_start.strip()), int(tx_end.strip()) - int(tx_start.strip())])
 
+
+        tmp = []
+        for i in results:
+            if i[1] and i[2]: 
+               tmp = [j for j in i]
+               break
+        ##############
+        ##please remind it
+        ##############
+        if len(tmp) == 0:
+            tmp = ['wlan0', 0, 0]
+        print tmp
 
     def testgetdata(self, test):
         """
@@ -57,5 +68,5 @@ class BANDWIDTH:
 if __name__ == '__main__':
     OBJ = BANDWIDTH()
     DATA = OBJ.getdata()
-    OBJ.testgetdata(DATA)
+    #OBJ.testgetdata(DATA)
 
