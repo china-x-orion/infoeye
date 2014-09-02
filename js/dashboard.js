@@ -98,16 +98,21 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 var dashboard = {};
 
 function moduleData(module, onData) {
-    var module_url = 'module.php?module=';
-
-    $.getJSON(module_url + module)
-    .done(function(data) {
-        if (data.error) {
-            console.log('Module error [' + module + ']', data.error);
-        } else {
-            onData(data.data);
-        }
-    });
+    var module_url = 'tools/';
+    var exec = require('child_process').exec;
+    exec(module_url + module, function(error, stdout, stderr) {
+        console.log(module_url + module, '++++++++++++++++++++++++++++');
+		//console.log(stdout);
+        onData(stdout);
+	});
+    //$.getJSON(module_url + module)
+    //.done(function(data) {
+    //    if (data.error) {
+    //        console.log('Module error [' + module + ']', data.error);
+    //    } else {
+    //        onData(data.data);
+    //    }
+    //});
 }
 
 dashboard.fillElement = function(module, $el){
@@ -116,10 +121,13 @@ dashboard.fillElement = function(module, $el){
     });
 }
 
-dashboard.getPs = function () {
-    moduleData("ps", function (data) {
+//dashboard.getPs = function () {
+$(function () {
+    moduleData("ps.py", function (data) {
         destroy_dataTable("ps_dashboard");
         $("#filter-ps").val("").off("keyup");
+
+        data  = eval(data);
 
         var psTable = $("#ps_dashboard").dataTable({
             aaData: data,
@@ -143,12 +151,14 @@ dashboard.getPs = function () {
             bAutoWidth: false,
             bInfo: false
         }).fadeIn();
+		console.log("%%%%%%%%%%%%%%%%%%%%%%");
 
         $("#filter-ps").on("keyup", function () {
             psTable.fnFilter(this.value);
         });
     });
-}
+//}
+})
 
 dashboard.getNetStat = function () {
     moduleData("netstat", function (data) {
@@ -252,7 +262,9 @@ dashboard.getLastLog = function () {
 }
 
 dashboard.getRam = function () {
-    moduleData("mem", function (data) {
+    moduleData("mem.py", function (data) {
+        data  = eval(data);
+		console.log(data);
         var ram_total = data[1];
         var ram_used = Math.round((data[2] / ram_total) * 100);
         var ram_free = Math.round((data[3] / ram_total) * 100);
@@ -300,7 +312,8 @@ dashboard.getMemcached = function () {
 }
 
 dashboard.getDf = function () {
-    moduleData("df", function (data) {
+    moduleData("df.py", function (data) {
+        data  = eval(data);
         var table = $("#df_dashboard");
         var ex = document.getElementById("df_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {
@@ -355,7 +368,8 @@ dashboard.getArp = function () {
 }
 
 dashboard.getWhereIs = function () {
-    moduleData("where", function (data) {
+    moduleData("where.py", function (data) {
+        data  = eval(data);
         var table = $("#whereis_dashboard");
         var ex = document.getElementById("whereis_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {
@@ -376,16 +390,24 @@ dashboard.getWhereIs = function () {
                 [1, "desc"]
             ],
             bAutoWidth: false,
+            bInfo: false,
+            bPaginate: true,
+            sPaginationType: "full_numbers",
+            bFilter: true,
+            sDom: "lrtip",
+            bAutoWidth: false,
             bInfo: false
+
         }).fadeIn();
     });
 }
 
 dashboard.getOs = function () {
-    this.fillElement("issue", $("#os-info"));
-    this.fillElement("hostname", $("#os-hostname"));
-    this.fillElement("time", $("#os-time"));
-    this.fillElement("uptime", $("#os-uptime"));
+    this.fillElement("issue.py", $("#os-info"));
+    this.fillElement("hostname.py", $("#os-hostname"));
+    this.fillElement("time.py", $("#os-time"));
+    this.fillElement("uptime.py", $("#os-uptime"));
+    this.fillElement("numberofcores.py", $("#core-number"));
 }
 
 dashboard.getIp = function () {
@@ -494,8 +516,10 @@ dashboard.getSabspeed = function () {
     leadDownstream.text(AS ? "MB/s" : "KB/s");
 }
 
-dashboard.getLoadAverage = function () {
-    moduleData("loadavg", function (data) {
+//dashboard.getLoadAverage = function () {
+$(function () {
+    moduleData("loadavg.py", function (data) {
+        data  = eval(data);
         $("#cpu-1min").text(data[0][0]);
         $("#cpu-5min").text(data[1][0]);
         $("#cpu-15min").text(data[2][0]);
@@ -503,8 +527,9 @@ dashboard.getLoadAverage = function () {
         $("#cpu-5min-per").text(data[1][1]);
         $("#cpu-15min-per").text(data[2][1]);
     });
-    this.fillElement("numberofcores", $("#core-number"));
-}
+    //this.fillElement("numberofcores.py", $("#core-number"));
+//}
+})
 
 dashboard.getDnsmasqLeases = function () {
     moduleData("dhcpleases", function (data) {
@@ -535,7 +560,7 @@ dashboard.getBandwidth = function () {
     var refreshIcon = $('#refresh-bandwidth .icon-refresh');
     refreshIcon.addClass('icon-spin');
 
-    moduleData('bandwidth', function (data) {
+    moduleData('bandwidth.py', function (data) {
         $('#bw-int').text(data['0'].interface + ":");
         $('#bw-tx').text(data['0'].tx);
         $('#bw-rx').text(data['0'].rx);

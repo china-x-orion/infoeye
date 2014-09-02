@@ -14,7 +14,8 @@ class diskfree:
 
     def getData(self):
         (status, output) = commands.getstatusoutput('/bin/df -Ph | sed -n \'2,$p\' | awk \'BEGIN {OFS=","} {print $1,$2,$3,$4,$5,$6}\'')
-        return output.split() 
+        print [i.split(",") for i in output.split()]
+        #return output.split() 
 
     def testGetData(self,test):
         if type(test) == type([]):
@@ -26,4 +27,4 @@ class diskfree:
 if __name__ == '__main__':
     a = diskfree()
     test = a.getData()
-    a.testGetData(test)
+    #a.testGetData(test)

@@ -14,7 +14,13 @@ class whereissoftware:
 
     def getData(self):
         (status, output) = commands.getstatusoutput('dpkg -l | awk \'{print$2, $3}\'')
-        return output 
+
+        #########
+        ## 5 is hard coded
+        ## please optmize it
+        #########
+        print [i.split() for i in output.split("\n")[5:]] 
+        #return output 
 
     def testGetData(self,test):
         if type(test) == type([]):
@@ -26,4 +32,4 @@ class whereissoftware:
 if __name__ == '__main__':
     a = whereissoftware()
     test = a.getData()
-    a.testGetData(test)
+    #a.testGetData(test)
