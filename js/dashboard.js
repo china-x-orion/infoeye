@@ -282,7 +282,7 @@ dashboard.getRam = function () {
     });
 }
 
-dashboard.getMemcached = function () {
+/*dashboard.getMemcached = function () {
     moduleData("memcached", function (data) {
 
         var i;
@@ -314,7 +314,7 @@ dashboard.getMemcached = function () {
         $("#memcached-used-per").text(per_used);
     });
 }
-
+*/
 dashboard.getDf = function () {
     moduleData("df.py", function (data) {
         data  = eval(data);
@@ -464,7 +464,7 @@ dashboard.getPing = function () {
         refreshIcon.removeClass('icon-spin');
     });
 }
-
+/*
 dashboard.getIspeed = function () {
     var rateUpstream = $("#ispeed-rate-upstream");
     var rateDownstream = $("#ispeed-rate-downstream");
@@ -496,7 +496,8 @@ dashboard.getIspeed = function () {
     leadUpstream.text(AS ? "MB/s" : "KB/s");
     leadDownstream.text(AS ? "MB/s" : "KB/s");
 }
-
+*/
+/*
 dashboard.getSabspeed = function () {
     var rateDownstream = $("#sabspeed-rate-downstream");
     var refreshIcon = $("#refresh-sabspeed .icon-refresh");
@@ -523,7 +524,7 @@ dashboard.getSabspeed = function () {
     var leadDownstream = rateDownstream.next(".lead");
     leadDownstream.text(AS ? "MB/s" : "KB/s");
 }
-
+*/
 //dashboard.getLoadAverage = function () {
 $(function () {
     moduleData("loadavg.py", function (data) {
@@ -538,7 +539,7 @@ $(function () {
     //this.fillElement("numberofcores.py", $("#core-number"));
 //}
 })
-
+/*
 dashboard.getDnsmasqLeases = function () {
     moduleData("dhcpleases", function (data) {
         var table = $("#dnsmasqleases_dashboard");
@@ -563,7 +564,7 @@ dashboard.getDnsmasqLeases = function () {
         }).fadeIn();
     });
 }
-
+*/
 dashboard.getBandwidth = function () {
     var refreshIcon = $('#refresh-bandwidth .icon-refresh');
     refreshIcon.addClass('icon-spin');
@@ -614,7 +615,7 @@ dashboard.getSwaps = function () {
 
 }
 
-
+/*
 dashboard.redis = function () {
     moduleData("redis_status", function (data) {
 		
@@ -637,7 +638,7 @@ dashboard.redis = function () {
 		}
 	});
 }
-
+*/
 /**
  * Refreshes all widgets. Does not call itself recursively.
  */
