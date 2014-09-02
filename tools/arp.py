@@ -23,7 +23,8 @@ class ARP:
         'if [ -e /usr/sbin/arp ] ; then /usr/sbin/arp ;\
         else /sbin/arp ; fi | awk \'BEGIN {OFS=","} \
         {print $1,$2,$3,$4,$5}\'')[1]
-        return output.split("\n")[1] 
+        print [i.split(",") for i in output.split("\n")[1:]]
+        #return [i.split(",") for i in output.split("\n")[1:]]
 
     def testgetdata(self, test):
         """
@@ -38,4 +39,4 @@ class ARP:
 if __name__ == '__main__':
     OBJ = ARP()
     DATA = OBJ.getdata()
-    OBJ.testgetdata(DATA)
+    #OBJ.testgetdata(DATA)

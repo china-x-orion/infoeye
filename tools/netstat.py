@@ -15,8 +15,13 @@ class netstat:
     def getData(self):
         (status, output) = commands.getstatusoutput('netstat -ntu | /usr/bin/awk \'NR>2 {sub(/:[^:]+$/, ""); print $5}\' | sort | uniq -c')
         #return output.split('\n') 
-        print [i.strip().split() for i in output.split("\n")]
-        #return [i.strip() for i in output.split("\n")]
+        
+        rst = [i.strip().split() for i in output.split("\n")]
+        if len(rst[0]) == 0:
+            print [["", ""]]
+        else:
+            print rst 
+        #[i.strip().split() for i in output.split("\n")]return [i.strip() for i in output.split("\n")]
 
     def testGetData(self,test):
         if type(test) == type([]):

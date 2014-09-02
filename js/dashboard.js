@@ -101,7 +101,7 @@ function moduleData(module, onData) {
     var module_url = 'tools/';
     var exec = require('child_process').exec;
     exec(module_url + module, function(error, stdout, stderr) {
-        console.log(module_url + module, '++++++++++++++++++++++++++++');
+        //console.log(module_url + module, '++++++++++++++++++++++++++++');
 		//console.log(stdout);
         onData(stdout);
 	});
@@ -151,7 +151,7 @@ $(function () {
             bAutoWidth: false,
             bInfo: false
         }).fadeIn();
-		console.log("%%%%%%%%%%%%%%%%%%%%%%");
+		//console.log("%%%%%%%%%%%%%%%%%%%%%%");
 
         $("#filter-ps").on("keyup", function () {
             psTable.fnFilter(this.value);
@@ -240,9 +240,10 @@ dashboard.getOnline = function () {
 }
 
 dashboard.getLastLog = function () {
-    moduleData("lastlog", function (data) {
+    moduleData("lastlog.py", function (data) {
         destroy_dataTable("lastlog_dashboard");
 
+        data  = eval(data);
         $("#lastlog_dashboard").dataTable({
             aaData: data,
             aoColumns: [
@@ -267,7 +268,7 @@ dashboard.getLastLog = function () {
 dashboard.getRam = function () {
     moduleData("mem.py", function (data) {
         data  = eval(data);
-		console.log(data);
+		//console.log(data);
         var ram_total = data[1];
         var ram_used = Math.round((data[2] / ram_total) * 100);
         var ram_free = Math.round((data[3] / ram_total) * 100);
@@ -344,7 +345,8 @@ dashboard.getDf = function () {
 }
 
 dashboard.getArp = function () {
-    moduleData("arp", function (data) {
+    moduleData("arp.py", function (data) {
+        data  = eval(data);
         var table = $("#arp_dashboard");
         var ex = document.getElementById("arp_dashboard");
         if ($.fn.DataTable.fnIsDataTable(ex)) {
@@ -568,7 +570,7 @@ dashboard.getBandwidth = function () {
 
     moduleData('bandwidth.py', function (data) {
         data  = eval(data);
-		console.log(data);
+		//console.log(data);
         $('#bw-int').text(data[0] + ":");
         $('#bw-tx').text(data[1]);
         $('#bw-rx').text(data[2]);
